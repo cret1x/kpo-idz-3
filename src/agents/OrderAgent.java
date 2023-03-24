@@ -1,5 +1,6 @@
 package agents;
 
+import Util.DFHelper;
 import behaviours.ReceiveOrderBehaviour;
 import behaviours.ReserveSuppliesBehaviour;
 import entities.Order;
@@ -24,17 +25,7 @@ public class OrderAgent extends Agent {
             container = (ContainerController) args[1];
         }
         System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready." + order.menuDishId());
-        DFAgentDescription agentDescription = new DFAgentDescription();
-        agentDescription.setName(getAID());
-        ServiceDescription serviceDescription = new ServiceDescription();
-        serviceDescription.setType(AGENT_TYPE);
-        serviceDescription.setName(AGENT_NAME);
-        agentDescription.addServices(serviceDescription);
-        try {
-            DFService.register(this, agentDescription);
-        } catch (FIPAException ex) {
-            System.out.println("Failed to register " + getAID().getName() + " for DF.");
-        }
+        DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
 
         //addBehaviour(new ReserveSuppliesBehaviour());
         try {

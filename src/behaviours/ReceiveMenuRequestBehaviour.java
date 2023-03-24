@@ -32,7 +32,7 @@ public class ReceiveMenuRequestBehaviour extends CyclicBehaviour {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(reply);
+            //System.out.println(reply);
             myAgent.send(reply);
         } else {
             block();

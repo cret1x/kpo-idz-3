@@ -1,8 +1,11 @@
 package agents;
 
+import Util.DFHelper;
 import behaviours.MakeOrderBehaviour;
+import behaviours.WaitForOrderBehaviour;
 import entities.Order;
 import jade.core.Agent;
+import jade.core.behaviours.SequentialBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
@@ -34,21 +37,15 @@ public class CustomerAgent extends Agent {
             orders = (ArrayList<Order>) args[3];
         }
         System.out.println(AGENT_NAME + " " + getAID().getName() + " has " + orderTotal + " orders!");
-        DFAgentDescription agentDescription = new DFAgentDescription();
-        agentDescription.setName(getAID());
-        ServiceDescription serviceDescription = new ServiceDescription();
-        serviceDescription.setType(AGENT_TYPE);
-        serviceDescription.setName(AGENT_NAME);
-        agentDescription.addServices(serviceDescription);
-        try {
-            DFService.register(this, agentDescription);
-        } catch (FIPAException ex) {
-            System.out.println("Failed to register " + getAID().getName() + " for DF.");
-        }
+        DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
+
         Duration diff = Duration.between(LocalDateTime.now(), orderStartDate);
         long delay = diff.toSeconds() * 1000;
         System.out.println("Delay: " + delay);
-        addBehaviour(new MakeOrderBehaviour(this, delay));
+        var seqBeh = new SequentialBehaviour();
+        seqBeh.addSubBehaviour(new MakeOrderBehaviour(this, delay));
+        seqBeh.addSubBehaviour(new WaitForOrderBehaviour());
+        addBehaviour(seqBeh);
     }
 
     protected void takeDown() {

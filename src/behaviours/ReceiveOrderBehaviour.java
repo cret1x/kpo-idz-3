@@ -58,6 +58,7 @@ public class ReceiveOrderBehaviour extends CyclicBehaviour {
 
     private boolean checkPosition(long id) {
         var t = ACLHelper.sendMessage(myAgent, MenuAgent.AGENT_TYPE, "check-menu", id);
+        MessageTemplate mt =  MessageTemplate.MatchConversationId("check-menu");
         ACLMessage reply = myAgent.receive(t);
         if (reply != null) {
 

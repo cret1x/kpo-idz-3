@@ -1,5 +1,6 @@
 package agents;
 
+import Util.DFHelper;
 import entities.Order;
 import entities.Product;
 import jade.core.Agent;
@@ -24,17 +25,7 @@ public class StorageAgent extends Agent {
             products = (ArrayList<Product>) args[0];
         }
         System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
-        DFAgentDescription agentDescription = new DFAgentDescription();
-        agentDescription.setName(getAID());
-        ServiceDescription serviceDescription = new ServiceDescription();
-        serviceDescription.setType(AGENT_TYPE);
-        serviceDescription.setName(AGENT_NAME);
-        agentDescription.addServices(serviceDescription);
-        try {
-            DFService.register(this, agentDescription);
-        } catch (FIPAException ex) {
-            System.out.println("Failed to register " + getAID().getName() + " for DF.");
-        }
+        DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
     }
     protected void takeDown() {
         System.out.println(AGENT_NAME + " " + getAID().getName() + " terminating.");

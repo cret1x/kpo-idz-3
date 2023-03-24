@@ -1,5 +1,6 @@
 package agents;
 
+import Util.DFHelper;
 import behaviours.ReceiveMenuRequestBehaviour;
 import entities.MenuDish;
 import entities.Order;
@@ -28,17 +29,7 @@ public class MenuAgent extends Agent {
             container = (ContainerController) args[1];
         }
         System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
-        DFAgentDescription agentDescription = new DFAgentDescription();
-        agentDescription.setName(getAID());
-        ServiceDescription serviceDescription = new ServiceDescription();
-        serviceDescription.setType(AGENT_TYPE);
-        serviceDescription.setName(AGENT_NAME);
-        agentDescription.addServices(serviceDescription);
-        try {
-            DFService.register(this, agentDescription);
-        } catch (FIPAException ex) {
-            System.out.println("Failed to register " + getAID().getName() + " for DF.");
-        }
+        DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
         addBehaviour(new ReceiveMenuRequestBehaviour());
     }
     protected void takeDown() {
