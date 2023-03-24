@@ -5,19 +5,13 @@ import org.json.simple.JSONObject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class MenuDish {
-    private long id;
-    private long card;
-    private long price;
-    private boolean active;
-    MenuDish(){}
+public record MenuDish(long id, long card, long price, boolean active) {
     public static MenuDish fromJson(JSONObject object){
-        MenuDish menuDish = new MenuDish();
-        menuDish.id = (long) object.get("menu_dish_id");
-        menuDish.card = (long) object.get("menu_dish_card");
-        menuDish.price = (long) object.get("menu_dish_price");
-        menuDish.active = (boolean) object.get("menu_dish_active");
-        return menuDish;
+        long id = (long) object.get("menu_dish_id");
+        long card = (long) object.get("menu_dish_card");
+        long price = (long) object.get("menu_dish_price");
+        boolean active = (boolean) object.get("menu_dish_active");
+        return new MenuDish(id ,card, price, active);
     }
 
 }

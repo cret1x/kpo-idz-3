@@ -7,6 +7,7 @@ import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
+import org.json.simple.JSONObject;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -19,8 +20,9 @@ public class CustomerAgent extends Agent {
     private LocalDateTime orderStartDate;
     private LocalDateTime orderEndDate;
     private long orderTotal;
-    public String orderStringObject;
+    public ArrayList<Order> orders;
 
+    @Override
     protected void setup() {
         System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
 
@@ -29,14 +31,14 @@ public class CustomerAgent extends Agent {
             orderStartDate = (LocalDateTime) args[0];
             orderEndDate = (LocalDateTime) args[1];
             orderTotal = (long) args[2];
-            orderStringObject = (String) args[3];
+            orders = (ArrayList<Order>) args[3];
         }
         System.out.println(AGENT_NAME + " " + getAID().getName() + " has " + orderTotal + " orders!");
         DFAgentDescription agentDescription = new DFAgentDescription();
         agentDescription.setName(getAID());
         ServiceDescription serviceDescription = new ServiceDescription();
         serviceDescription.setType(AGENT_TYPE);
-        serviceDescription.setType(AGENT_NAME);
+        serviceDescription.setName(AGENT_NAME);
         agentDescription.addServices(serviceDescription);
         try {
             DFService.register(this, agentDescription);

@@ -1,3 +1,5 @@
+import entities.MenuDish;
+import entities.Order;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
@@ -10,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Restaurant {
     private String basePath;
@@ -24,11 +27,12 @@ public class Restaurant {
 
     public void initAgents() {
         loadCustomersFromFile();
+        loadMenuFromFile();
         try {
             agents.add(container.createNewAgent("Manager 1",
-                    "agents.ManagerAgent", null));
+                    "agents.ManagerAgent", new Object[]{container}));
         } catch (StaleProxyException ex) {
-            System.out.println("Failed to create manager!");
+            System.out.println("Failed to create agents!");
         }
 
         for (AgentController ac : agents) {
@@ -50,9 +54,10 @@ public class Restaurant {
                 LocalDateTime orderStartDate = LocalDateTime.parse((String) visitor.get("vis_ord_started"));
                 LocalDateTime orderEndDate = LocalDateTime.parse((String) visitor.get("vis_ord_ended"));
                 long orderTotal = (long) visitor.get("vis_ord_total");
-                String orderArray = (String) visitor.get("vis_ord_dishes").toString();
+                var ordersList = ((JSONArray) visitor.get("vis_ord_dishes")).stream().map(obj -> Order.fromJson((JSONObject) obj)).toList();
+                ArrayList<Order> orders = new ArrayList<Order>(ordersList);
                 agents.add(container.createNewAgent(name,
-                        "agents.CustomerAgent", new Object[]{orderStartDate, orderEndDate, orderTotal, orderArray}));
+                        "agents.CustomerAgent", new Object[]{orderStartDate, orderEndDate, orderTotal, orders}));
             }
         } catch (IOException | ParseException | StaleProxyException exception) {
             System.out.println("File not found or bad format!");
@@ -60,26 +65,23 @@ public class Restaurant {
     }
 
     private void loadMenuFromFile() {
-        try{
-            JSONObject MenuObject = (JSONObject) parser.parse(new FileReader(basePath + "menu_dishes.txt"));
-            JSONArray Menu = (JSONArray) MenuObject.get("menu_dishes");
-            for (Object o : Menu) {
-                JSONObject menu_dish = (JSONObject) o;
-                long id = (long) menu_dish.get("menu_dish_id");
-                long card = (long) menu_dish.get("menu_dish_card");
-                long price = (long) menu_dish.get("menu_dish_price");
-                boolean active = (boolean) menu_dish.get("menu_dish_active");
-            }
-        } catch (IOException | ParseException exception) {
+        try {
+            JSONObject menuObject = (JSONObject) parser.parse(new FileReader(basePath + "menu_dishes.txt"));
+            JSONArray menu = (JSONArray) menuObject.get("menu_dishes");
+            var menuList = menu.stream().map(obj -> MenuDish.fromJson((JSONObject) obj)).toList();
+            var mm = new ArrayList<MenuDish>(menuList);
+            agents.add(container.createNewAgent("Menu 1",
+                    "agents.MenuAgent", new Object[]{mm, container}));
+        } catch (IOException | ParseException | StaleProxyException exception) {
             System.out.println("File not found or bad format!");
         }
     }
 
     private void loadRecipesFromFile() {
-        try{
+        try {
             JSONObject cardObject = (JSONObject) parser.parse(new FileReader(basePath + "dish_cards.txt"));
             JSONArray dish_cards = (JSONArray) cardObject.get("dish_cards");
-            for (Object o : dish_cards){
+            for (Object o : dish_cards) {
                 JSONObject dish_card = (JSONObject) o;
                 long card_id = (long) dish_card.get("card_id");
                 String dish_name = (String) dish_card.get("dish_name");
@@ -94,10 +96,10 @@ public class Restaurant {
     }
 
     private void loadSuppliesTypeFromFile() {
-        try{
+        try {
             JSONObject productObject = (JSONObject) parser.parse(new FileReader(basePath + "product_types.txt"));
             JSONArray product_types = (JSONArray) productObject.get("product_types");
-            for (Object o : product_types){
+            for (Object o : product_types) {
                 JSONObject product_type = (JSONObject) o;
                 long prod_id = (long) product_type.get("prod_id");
                 String prod_type_name = (String) product_type.get("prod_type_name");
@@ -109,10 +111,10 @@ public class Restaurant {
     }
 
     private void loadSuppliesFromFile() {
-        try{
+        try {
             JSONObject productsObject = (JSONObject) parser.parse(new FileReader(basePath + "products.txt"));
             JSONArray products = (JSONArray) productsObject.get("products");
-            for (Object o: products){
+            for (Object o : products) {
                 JSONObject product = (JSONObject) o;
                 long prod_item_id = (long) product.get("prod_item_id");
                 long prod_item_type = (long) product.get("prod_item_type");
@@ -130,10 +132,10 @@ public class Restaurant {
     }
 
     private void loadEquipmentTypeFromFile() {
-        try{
+        try {
             JSONObject equipment_typeObject = (JSONObject) parser.parse(new FileReader(basePath + "equipment_type.txt"));
             JSONArray equipment_types = (JSONArray) equipment_typeObject.get("equipment_type");
-            for (Object o: equipment_types){
+            for (Object o : equipment_types) {
                 JSONObject equipment_type = (JSONObject) o;
                 long equip_type_id = (long) equipment_type.get("equip_type_id");
                 String equip_type_name = (String) equipment_type.get("equip_type_name");
@@ -143,11 +145,11 @@ public class Restaurant {
         }
     }
 
-    private void loadEquipmentFromFile(){
-        try{
+    private void loadEquipmentFromFile() {
+        try {
             JSONObject equipmentObject = (JSONObject) parser.parse(new FileReader(basePath + "equipment.txt"));
             JSONArray equipments = (JSONArray) equipmentObject.get("equipment");
-            for (Object o: equipments){
+            for (Object o : equipments) {
                 JSONObject equipment = (JSONObject) o;
                 long equip_type = (long) equipment.get("equip_type");
                 String equip_name = (String) equipment.get("equip_name");
@@ -157,11 +159,12 @@ public class Restaurant {
             System.out.println("File not found or bad format!");
         }
     }
+
     private void loadCooksFromFile() {
-        try{
+        try {
             JSONObject cookerObject = (JSONObject) parser.parse(new FileReader(basePath + "cookers.txt"));
             JSONArray cookers = (JSONArray) cookerObject.get("cookers");
-            for (Object o: cookers){
+            for (Object o : cookers) {
                 JSONObject cooker = (JSONObject) o;
                 long cook_id = (long) cooker.get("cook_id");
                 String cook_name = (String) cooker.get("cook_name");
@@ -173,10 +176,10 @@ public class Restaurant {
     }
 
     private void loadOperationsFromFile() {
-        try{
+        try {
             JSONObject operationObject = (JSONObject) parser.parse(new FileReader(basePath + "operation_types.txt"));
             JSONArray operation_types = (JSONArray) operationObject.get("operation_types");
-            for (Object o: operation_types){
+            for (Object o : operation_types) {
                 JSONObject operation_type = (JSONObject) o;
                 long oper_type_id = (long) operation_type.get("oper_type_id");
                 String oper_type_name = (String) operation_type.get("oper_type_name");
