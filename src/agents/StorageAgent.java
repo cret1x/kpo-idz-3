@@ -1,15 +1,8 @@
 package agents;
 
-import Util.DFHelper;
-import entities.Order;
+import util.DFHelper;
 import entities.Product;
 import jade.core.Agent;
-import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.domain.FIPAException;
-import jade.wrapper.ContainerController;
-import jade.wrapper.StaleProxyException;
 
 import java.util.ArrayList;
 

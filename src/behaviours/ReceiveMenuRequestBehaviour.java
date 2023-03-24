@@ -1,6 +1,6 @@
 package behaviours;
 
-import Util.ACLHelper;
+import util.ACLHelper;
 import agents.MenuAgent;
 import entities.MenuDish;
 import jade.core.behaviours.CyclicBehaviour;

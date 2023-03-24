@@ -1,17 +1,9 @@
 package agents;
 
-import Util.DFHelper;
-import behaviours.MakeOrderBehaviour;
+import util.DFHelper;
 import behaviours.ReceiveOrderBehaviour;
 import jade.core.Agent;
-import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.domain.FIPAException;
 import jade.wrapper.ContainerController;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
 
 public class ManagerAgent extends Agent {
     public static final String AGENT_TYPE = "manager";

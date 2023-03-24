@@ -1,7 +1,5 @@
-package Util;
+package util;
 
-import agents.CustomerAgent;
-import agents.ManagerAgent;
 import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
@@ -10,7 +8,6 @@ import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.lang.acl.UnreadableException;
-import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.Serializable;

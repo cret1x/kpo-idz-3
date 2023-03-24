@@ -1,6 +1,5 @@
-package Util;
+package util;
 
-import jade.core.AID;
 import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;

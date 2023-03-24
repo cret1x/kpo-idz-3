@@ -1,6 +1,6 @@
 package behaviours;
 
-import Util.ACLHelper;
+import util.ACLHelper;
 import agents.CustomerAgent;
 import agents.ManagerAgent;
 import jade.core.Agent;

@@ -1,20 +1,14 @@
 package agents;
 
-import Util.DFHelper;
+import util.DFHelper;
 import behaviours.MakeOrderBehaviour;
 import behaviours.WaitForOrderBehaviour;
 import entities.Order;
 import jade.core.Agent;
 import jade.core.behaviours.SequentialBehaviour;
-import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.domain.FIPAException;
-import org.json.simple.JSONObject;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 
 public class CustomerAgent extends Agent {
