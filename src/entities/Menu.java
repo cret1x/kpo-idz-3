@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class Menu {
     private ArrayList<MenuDish> menuDishes;
-    Menu(){};
+    public Menu(){};
     public static Menu fromJson(JSONObject object){
         Menu menu = new Menu();
         menu.menuDishes = new ArrayList<>();

@@ -10,12 +10,6 @@ public class MenuDish {
     private long card;
     private long price;
     private boolean active;
-    MenuDish(long id, long card, long price, boolean active){
-        this.id = id;
-        this.card = card;
-        this.price = price;
-        this.active = active;
-    }
     MenuDish(){}
     public static MenuDish fromJson(JSONObject object){
         MenuDish menuDish = new MenuDish();
