@@ -8,7 +8,6 @@ public class JsonLogger {
     }
 
     public static void logError(String error) {
-
     }
 
     public static void logMessage(String message) {

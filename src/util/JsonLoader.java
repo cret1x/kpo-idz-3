@@ -1,115 +1,69 @@
-import entities.MenuDish;
-import entities.Order;
-import jade.wrapper.AgentController;
-import jade.wrapper.ContainerController;
+package util;
+
+import agents.CustomerAgent;
+import agents.MenuAgent;
+import agents.StorageAgent;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import entities.*;
 import jade.wrapper.StaleProxyException;
+import json_entries.*;
+import main.Restaurant;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Restaurant {
+public class JsonLoader {
     private String basePath;
-    private ContainerController container;
-    private ArrayList<AgentController> agents = new ArrayList<>();
-    JSONParser parser = new JSONParser();
-
-    public Restaurant(String basePath, ContainerController container) {
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+    public void loadFiles(String basePath) {
         this.basePath = basePath;
-        this.container = container;
-    }
-
-    public void initAgents() {
         loadCustomersFromFile();
         loadMenuFromFile();
-        try {
-            agents.add(container.createNewAgent("Manager 1",
-                    "agents.ManagerAgent", new Object[]{container}));
-        } catch (StaleProxyException ex) {
-            System.out.println("Failed to create agents!");
-        }
-
-        for (AgentController ac : agents) {
-            try {
-                ac.start();
-            } catch (StaleProxyException ex) {
-                System.out.println("Failed to start agent!");
-            }
-        }
+        loadSuppliesFromFile();
     }
 
     private void loadCustomersFromFile() {
         try {
-            JSONObject visitorsOrdersObject = (JSONObject) parser.parse(new FileReader(basePath + "visitors_orders.txt"));
-            JSONArray visitorsOrders = (JSONArray) visitorsOrdersObject.get("visitors_orders");
-            for (Object o : visitorsOrders) {
-                JSONObject visitor = (JSONObject) o;
-                String name = (String) visitor.get("vis_name");
-                LocalDateTime orderStartDate = LocalDateTime.parse((String) visitor.get("vis_ord_started"));
-                LocalDateTime orderEndDate = LocalDateTime.parse((String) visitor.get("vis_ord_ended"));
-                long orderTotal = (long) visitor.get("vis_ord_total");
-                var ordersList = ((JSONArray) visitor.get("vis_ord_dishes")).stream().map(obj -> Order.fromJson((JSONObject) obj)).toList();
-                ArrayList<Order> orders = new ArrayList<Order>(ordersList);
-                agents.add(container.createNewAgent(name,
-                        "agents.CustomerAgent", new Object[]{orderStartDate, orderEndDate, orderTotal, orders}));
+            ArrayList<Customer> customers = gson.fromJson(new FileReader(basePath + "visitors_orders.txt"), CustomerEntry.class).customers();
+            for (Customer c : customers) {
+                Restaurant.containerController.createNewAgent(c.name(), CustomerAgent.class.getName(), new Object[]{c}).start();
             }
-        } catch (IOException | ParseException | StaleProxyException exception) {
+        } catch (IOException | StaleProxyException exception) {
             System.out.println("File not found or bad format!");
         }
     }
 
     private void loadMenuFromFile() {
         try {
-            JSONObject menuObject = (JSONObject) parser.parse(new FileReader(basePath + "menu_dishes.txt"));
-            JSONArray menu = (JSONArray) menuObject.get("menu_dishes");
-            var menuList = menu.stream().map(obj -> MenuDish.fromJson((JSONObject) obj)).toList();
-            var mm = new ArrayList<MenuDish>(menuList);
-            agents.add(container.createNewAgent("Menu 1",
-                    "agents.MenuAgent", new Object[]{mm, container}));
-        } catch (IOException | ParseException | StaleProxyException exception) {
+            ArrayList<MenuDish> dishes = gson.fromJson(new FileReader(basePath + "menu_dishes.txt"), MenuEntry.class).dishes();
+            ArrayList<DishCard> recipes = gson.fromJson(new FileReader(basePath + "dish_cards.txt"), DishCardEntry.class).cards();
+            Restaurant.containerController.createNewAgent("Menu 1", MenuAgent.class.getName(), new Object[]{dishes, recipes}).start();
+        } catch (IOException | StaleProxyException exception) {
             System.out.println("File not found or bad format!");
         }
     }
 
-    private void loadRecipesFromFile() {
+    private void loadSuppliesFromFile() {
         try {
-            JSONObject cardObject = (JSONObject) parser.parse(new FileReader(basePath + "dish_cards.txt"));
-            JSONArray dish_cards = (JSONArray) cardObject.get("dish_cards");
-            for (Object o : dish_cards) {
-                JSONObject dish_card = (JSONObject) o;
-                long card_id = (long) dish_card.get("card_id");
-                String dish_name = (String) dish_card.get("dish_name");
-                String card_descr = (String) dish_card.get("card_descr");
-                double card_time = (double) dish_card.get("card_time");
-                long equip_type = (long) dish_card.get("equip_type");
-                String operations = (String) dish_card.get("operations").toString();
-            }
-        } catch (IOException | ParseException exception) {
+            ArrayList<ProductType> types = gson.fromJson(new FileReader(basePath + "product_types.txt"), ProductTypeEntry.class).productTypes();
+            ArrayList<Product> products = gson.fromJson(new FileReader(basePath + "products.txt"), ProductEntry.class).products();
+            Restaurant.containerController.createNewAgent("Storage 1", StorageAgent.class.getName(), new Object[] {types, products}).start();
+        } catch (IOException | StaleProxyException exception) {
             System.out.println("File not found or bad format!");
         }
     }
-
-    private void loadSuppliesTypeFromFile() {
-        try {
-            JSONObject productObject = (JSONObject) parser.parse(new FileReader(basePath + "product_types.txt"));
-            JSONArray product_types = (JSONArray) productObject.get("product_types");
-            for (Object o : product_types) {
-                JSONObject product_type = (JSONObject) o;
-                long prod_id = (long) product_type.get("prod_id");
-                String prod_type_name = (String) product_type.get("prod_type_name");
-                boolean prod_is_food = (boolean) product_type.get("prod_is_food");
-            }
-        } catch (IOException | ParseException exception) {
-            System.out.println("File not found or bad format!");
-        }
-    }
-
+    /*
     private void loadSuppliesFromFile() {
         try {
             JSONObject productsObject = (JSONObject) parser.parse(new FileReader(basePath + "products.txt"));
@@ -188,4 +142,5 @@ public class Restaurant {
             System.out.println("File not found or bad format!");
         }
     }
+     */
 }

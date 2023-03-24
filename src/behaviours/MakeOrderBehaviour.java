@@ -5,10 +5,10 @@ import agents.CustomerAgent;
 import agents.ManagerAgent;
 import jade.core.Agent;
 import jade.core.behaviours.WakerBehaviour;
+import util.ConversationTypes;
 
 
 public class MakeOrderBehaviour extends WakerBehaviour {
-    private static final String CONVERSATION_ID = "make-order";
     public MakeOrderBehaviour(Agent a, long timeout) {
         super(a, timeout);
     }
@@ -16,6 +16,6 @@ public class MakeOrderBehaviour extends WakerBehaviour {
     protected void onWake() {
         System.out.println(myAgent.getAID().getName() + ": I am going to make an order!");
 
-        ACLHelper.sendMessage(myAgent, ManagerAgent.AGENT_TYPE, CONVERSATION_ID, ((CustomerAgent)myAgent).orders);
+        ACLHelper.sendMessage(myAgent, ManagerAgent.AGENT_TYPE, ConversationTypes.MAKE_ORDER, ((CustomerAgent)myAgent).getOrdersList());
     }
 }

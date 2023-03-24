@@ -1,5 +1,7 @@
 package behaviours;
 
+import agents.OrderAgent;
+import main.Restaurant;
 import util.ACLHelper;
 import agents.MenuAgent;
 import entities.Order;
@@ -9,19 +11,14 @@ import jade.lang.acl.MessageTemplate;
 import jade.lang.acl.UnreadableException;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
+import util.ConversationTypes;
 
 import java.util.ArrayList;
 
 public class ReceiveOrderBehaviour extends CyclicBehaviour {
-    private ContainerController container;
-    private static final String CONVERSATION_ID = "make-order";
-
-    public ReceiveOrderBehaviour(ContainerController container) {
-        this.container = container;
-    }
     @Override
     public void action() {
-        MessageTemplate messageTemplate = MessageTemplate.MatchConversationId(CONVERSATION_ID);
+        MessageTemplate messageTemplate = MessageTemplate.MatchConversationId(ConversationTypes.MAKE_ORDER);
         ACLMessage msg = myAgent.receive(messageTemplate);
         ArrayList<Order> orders = null;
         if (msg != null) {
@@ -33,8 +30,8 @@ public class ReceiveOrderBehaviour extends CyclicBehaviour {
             if (orders != null) {
                 try {
                     for (Order o: orders) {
-                        if (checkPosition(o.menuDishId())) {
-                            container.createNewAgent("Order" + o.orderId(), "agents.OrderAgent", new Object[]{o, container}).start();
+                        if (checkPosition(o.dishId())) {
+                            Restaurant.containerController.createNewAgent("Order" + o.id(), OrderAgent.class.getName(), new Object[]{o}).start();
                         }
                     }
                 } catch (StaleProxyException ex) {
@@ -49,9 +46,7 @@ public class ReceiveOrderBehaviour extends CyclicBehaviour {
     }
 
     private boolean checkPosition(long id) {
-        var t = ACLHelper.sendMessage(myAgent, MenuAgent.AGENT_TYPE, "check-menu", id);
-        MessageTemplate mt =  MessageTemplate.MatchConversationId("check-menu");
-
+        var t = ACLHelper.sendMessage(myAgent, MenuAgent.AGENT_TYPE, ConversationTypes.CHECK_MENU, id);
         ACLMessage reply = myAgent.receive(t);
 
         // Патч Костыль от Антона
@@ -70,6 +65,4 @@ public class ReceiveOrderBehaviour extends CyclicBehaviour {
             return false;
         }
     }
-
-
 }

@@ -4,10 +4,15 @@ import org.json.simple.JSONObject;
 
 import java.io.Serializable;
 
-public record Order(long orderId, long menuDishId) implements Serializable {
-    public static Order fromJson(JSONObject object) {
-        long oId = (long) object.get("ord_dish_id");
-        long mId = (long) object.get("menu_dish");
-        return new Order(oId, mId);
+public class Order implements Serializable {
+    private long ord_dish_id;
+    private long menu_dish;
+
+    public long id() {
+        return ord_dish_id;
+    }
+
+    public long dishId() {
+        return menu_dish;
     }
 }

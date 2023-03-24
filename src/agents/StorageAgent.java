@@ -1,5 +1,6 @@
 package agents;
 
+import entities.ProductType;
 import util.DFHelper;
 import entities.Product;
 import jade.core.Agent;
@@ -10,12 +11,14 @@ public class StorageAgent extends Agent {
     public static final String AGENT_TYPE = "storage";
     public static final String AGENT_NAME = "Storage-agent";
     public ArrayList<Product> products;
+    public ArrayList<ProductType> productsTypes;
 
     @Override
     protected void setup() {
         Object[] args = getArguments();
-        if (args != null && args.length > 0) {
+        if (args != null && args.length > 1) {
             products = (ArrayList<Product>) args[0];
+            productsTypes = (ArrayList<ProductType>) args[1];
         }
         System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
         DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
