@@ -18,4 +18,8 @@ public class Cooker implements Serializable {
     public boolean isActive() {
         return cook_active;
     }
+
+    public void setActive(boolean value) {
+        cook_active = value;
+    }
 }

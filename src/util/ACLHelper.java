@@ -42,6 +42,19 @@ public class ACLHelper {
         return messageTemplate;
     }
 
+    public static void sendMessageWithReply(Agent agent, String receiver, String conversationId, Serializable data, ReplyCallback callback) {
+        var messageTemplate = ACLHelper.sendMessage(agent, receiver, conversationId, data);
+        ACLMessage reply = agent.receive(messageTemplate);
+        while (reply == null) {
+            reply = agent.receive(messageTemplate);
+        }
+        try {
+            callback.callback(getContent(reply));
+        } catch (UnreadableException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static <T> T getContent(ACLMessage message) throws UnreadableException {
         return (T)message.getContentObject();
     }

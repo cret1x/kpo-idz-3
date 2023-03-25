@@ -1,10 +1,6 @@
 package entities;
 
-import org.json.simple.JSONObject;
-
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class MenuDish implements Serializable {
     private long menu_dish_id;
@@ -26,6 +22,10 @@ public class MenuDish implements Serializable {
 
     public boolean isActive() {
         return menu_dish_active;
+    }
+
+    public void setInactive() {
+        menu_dish_active = false;
     }
 }
 

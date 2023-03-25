@@ -1,10 +1,6 @@
 package entities;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class OperationType implements Serializable {
     private long oper_type_id;

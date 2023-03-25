@@ -1,11 +1,7 @@
 package agents;
 
 import entities.Equipment;
-import entities.EquipmentType;
-import entities.Order;
 import jade.core.Agent;
-import jade.wrapper.StaleProxyException;
-import main.Restaurant;
 import util.DFHelper;
 
 public class EquipmentAgent extends Agent {

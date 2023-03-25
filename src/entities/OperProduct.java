@@ -1,7 +1,5 @@
 package entities;
 
-import org.json.simple.JSONObject;
-
 import java.io.Serializable;
 
 public class OperProduct implements Serializable {

@@ -1,6 +1,5 @@
 package json_entries;
 
-import entities.Product;
 import entities.ProductType;
 
 import java.util.ArrayList;

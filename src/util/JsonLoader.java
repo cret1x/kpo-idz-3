@@ -1,7 +1,8 @@
 package util;
 
 import agents.*;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import entities.*;
 import jade.wrapper.StaleProxyException;
 import json_entries.*;
@@ -49,7 +50,7 @@ public class JsonLoader {
         try {
             ArrayList<ProductType> types = gson.fromJson(new FileReader(basePath + "product_types.txt"), ProductTypeEntry.class).productTypes();
             ArrayList<Product> products = gson.fromJson(new FileReader(basePath + "products.txt"), ProductEntry.class).products();
-            Restaurant.containerController.createNewAgent("Storage 1", StorageAgent.class.getName(), new Object[] {types, products}).start();
+            Restaurant.containerController.createNewAgent("Storage 1", StorageAgent.class.getName(), new Object[] {products, types}).start();
         } catch (IOException | StaleProxyException exception) {
             System.out.println("File not found or bad format!");
         }

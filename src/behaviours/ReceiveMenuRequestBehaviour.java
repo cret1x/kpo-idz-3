@@ -1,12 +1,12 @@
 package behaviours;
 
-import util.ACLHelper;
 import agents.MenuAgent;
 import entities.MenuDish;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.lang.acl.UnreadableException;
+import util.ACLHelper;
 import util.ConversationTypes;
 
 import java.io.IOException;
@@ -23,6 +23,10 @@ public class ReceiveMenuRequestBehaviour extends CyclicBehaviour {
             } catch (UnreadableException e) {
                 e.printStackTrace();
             }
+            //TODO Вот тут все ломается
+            //while (((MenuAgent)myAgent).hasToUpdate.get()) {
+                System.out.println("FUCK");
+            //}
             long finalMId = mId;
             var d = ((MenuAgent)myAgent).dishes.stream().filter(x -> x.id() == finalMId).findFirst();
             boolean active = d.map(MenuDish::isActive).orElse(false);
@@ -32,9 +36,11 @@ public class ReceiveMenuRequestBehaviour extends CyclicBehaviour {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            ((MenuAgent)myAgent).hasToUpdate.set(true);
             myAgent.send(reply);
         } else {
             block();
         }
+
     }
 }

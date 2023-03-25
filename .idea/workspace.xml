@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1e1b4d27-f949-471c-a1a9-f866538593ca" name="Changes" comment="Fuck me even harder">
-      <change afterPath="$PROJECT_DIR$/src/agents/CookerAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/Cooker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/Equipment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/EquipmentType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/OperationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/CookEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/EquipmentEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/EquipmentTypeEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/OperationTypeEntry.java" afterDir="false" />
+    <list default="true" id="1e1b4d27-f949-471c-a1a9-f866538593ca" name="Changes" comment="Added all agents">
+      <change afterPath="$PROJECT_DIR$/src/agents/OperationAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/behaviours/ManageSuppliesBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/behaviours/ReserveCookerBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/behaviours/SendDishCardBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/behaviours/SendProductsByMenuIdBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/behaviours/UpdateActiveMenuBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/ReplyCallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/CookAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/CookerAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/CookerAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/agents/CustomerAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/CustomerAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/EquipementAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/EquipmentAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/DishCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/DishCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/EquipmentAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/EquipmentAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/ManagerAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/ManagerAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/MenuAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/MenuAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/OrderAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/OrderAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/ProcessAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/ProcessAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/StorageAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/StorageAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/behaviours/MakeOrderBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/MakeOrderBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/behaviours/ReceiveMenuRequestBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/ReceiveMenuRequestBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/behaviours/ReceiveOrderBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/ReceiveOrderBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/behaviours/ReserveEquipmentBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/ReserveEquipmentBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/behaviours/ReserveSuppliesBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/ReserveSuppliesBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Cooker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Cooker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/MenuDish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/MenuDish.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/OperProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/OperProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/OperationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/OperationType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_entries/ProductTypeEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_entries/ProductTypeEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/ACLHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ACLHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/ConversationTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ConversationTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/DFHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/DFHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/JsonLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/JsonLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/JsonLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/JsonLogger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +47,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -65,6 +82,11 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="behaviours" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main launch">
     <configuration name="Jade launch" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="jade.Boot" />
@@ -137,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679689231576</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added all agents">
+      <created>1679739051598</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679739051598</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,9 +188,29 @@
     <MESSAGE value="Help me plz !!!!" />
     <MESSAGE value="Fuck me hard" />
     <MESSAGE value="Fuck me even harder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fuck me even harder" />
+    <MESSAGE value="Added all agents" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added all agents" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/behaviours/UpdateActiveMenuBehaviour.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/behaviours/SendProductsByMenuIdBehaviour.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/behaviours/SendDishCardBehaviour.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="json_entries.CustomerEntry" memberName="customers" />

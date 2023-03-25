@@ -1,18 +1,15 @@
 package agents;
 
-import entities.Customer;
-import util.DFHelper;
 import behaviours.MakeOrderBehaviour;
 import behaviours.WaitForOrderBehaviour;
+import entities.Customer;
 import entities.Order;
 import jade.core.Agent;
 import jade.core.behaviours.SequentialBehaviour;
+import util.DFHelper;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class CustomerAgent extends Agent {
     public static final String AGENT_TYPE = "customer";

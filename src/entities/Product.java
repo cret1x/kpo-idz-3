@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Product implements Serializable {
-    private int prod_item_id;
-    private int prod_item_type;
+    private long prod_item_id;
+    private long prod_item_type;
     private String prod_item_name;
     private String prod_item_company;
     private String prod_item_unit;
@@ -14,11 +14,11 @@ public class Product implements Serializable {
     private Date prod_item_delivered;
     private Date prod_item_valid_until;
 
-    public int id() {
+    public long id() {
         return prod_item_id;
     }
 
-    public int type() {
+    public long type() {
         return prod_item_type;
     }
 
@@ -36,6 +36,12 @@ public class Product implements Serializable {
 
     public double quantity() {
         return prod_item_quantity;
+    }
+
+    public void rmQuantity(double q) {
+        prod_item_quantity -= q;
+        if (prod_item_quantity < 0)
+            prod_item_quantity = 0;
     }
 
     public double cost() {

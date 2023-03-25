@@ -7,7 +7,7 @@ import util.DFHelper;
 public class CookerAgent extends Agent {
     public static final String AGENT_TYPE = "cooker";
     public static final String AGENT_NAME = "Cooker-agent";
-    private Cooker cooker;
+    public Cooker cooker;
     @Override
     protected void setup() {
         Object[] args = getArguments();
