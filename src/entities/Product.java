@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Product {
+public class Product implements Serializable {
     private int prod_item_id;
     private int prod_item_type;
     private String prod_item_name;

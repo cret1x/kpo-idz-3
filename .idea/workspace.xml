@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1e1b4d27-f949-471c-a1a9-f866538593ca" name="Changes" comment="Fuck me hard">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/gson-2.10.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/CustomerEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/DishCardEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/MenuEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/ProductEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json_entries/ProductTypeEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/ConversationTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/JsonLoader.java" afterDir="false" />
+    <list default="true" id="1e1b4d27-f949-471c-a1a9-f866538593ca" name="Changes" comment="Fuck me even harder">
+      <change afterPath="$PROJECT_DIR$/src/agents/CookerAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/Cooker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/Equipment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/EquipmentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/OperationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/json_entries/CookEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/json_entries/EquipmentEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/json_entries/EquipmentTypeEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/json_entries/OperationTypeEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Restaurant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Restaurant.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/CookAgent.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/agents/CustomerAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/CustomerAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/ManagerAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/ManagerAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/MenuAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/MenuAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/OrderAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/OrderAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agents/StorageAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/StorageAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behaviours/MakeOrderBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/MakeOrderBehaviour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behaviours/ReceiveMenuRequestBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/ReceiveMenuRequestBehaviour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behaviours/ReceiveOrderBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behaviours/ReceiveOrderBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agents/EquipementAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agents/EquipmentAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/DishCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/DishCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/MenuDish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/MenuDish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/OperProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/OperProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Operation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/ProductType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/JsonLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/JsonLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/JsonLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/JsonLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679680351636</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fuck me even harder">
+      <created>1679689231576</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679689231576</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,7 +158,8 @@
     <MESSAGE value="Help me plz" />
     <MESSAGE value="Help me plz !!!!" />
     <MESSAGE value="Fuck me hard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fuck me hard" />
+    <MESSAGE value="Fuck me even harder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fuck me even harder" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

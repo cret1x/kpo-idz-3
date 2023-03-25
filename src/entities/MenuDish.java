@@ -2,10 +2,11 @@ package entities;
 
 import org.json.simple.JSONObject;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class MenuDish {
+public class MenuDish implements Serializable {
     private long menu_dish_id;
     private long menu_dish_card;
     private long menu_dish_price;

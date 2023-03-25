@@ -32,11 +32,11 @@ public class CustomerAgent extends Agent {
         if (args != null && args.length > 0) {
             customer = (Customer) args[0];
         }
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " has " + customer.total() + " orders!");
         DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
 
         long delay = (customer.startTime().getTime() - new Date().getTime());
         System.out.println("Delay: " + delay);
+
         var seqBeh = new SequentialBehaviour();
         seqBeh.addSubBehaviour(new MakeOrderBehaviour(this, delay < 2000 ? 2000 : delay));
         seqBeh.addSubBehaviour(new WaitForOrderBehaviour());
