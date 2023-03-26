@@ -1,9 +1,6 @@
 package agents;
 
-import behaviours.ReceiveMenuRequestBehaviour;
-import behaviours.SendDishCardBehaviour;
-import behaviours.SendProductsByMenuIdBehaviour;
-import behaviours.UpdateActiveMenuBehaviour;
+import behaviours.*;
 import entities.DishCard;
 import entities.MenuDish;
 import jade.core.Agent;
@@ -37,6 +34,7 @@ public class MenuAgent extends Agent {
         pb.addSubBehaviour(new SendProductsByMenuIdBehaviour());
         pb.addSubBehaviour(new UpdateActiveMenuBehaviour());
         pb.addSubBehaviour(new SendDishCardBehaviour());
+        pb.addSubBehaviour(new SendCostBehaviour());
         addBehaviour(pb);
     }
     protected void takeDown() {

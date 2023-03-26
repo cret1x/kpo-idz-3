@@ -46,7 +46,7 @@ public class ProcessAgent extends Agent {
                     Date startDate = cal.getTime();
                     cal.add(Calendar.MINUTE, (int) (dc.time() * 100));
                     var operationIds = new ArrayList<Long>();
-                    for (long i = Restaurant.operationCount; i < Restaurant.operationCount + dc.operations().size(); i++) {
+                    for (long i = Restaurant.operationCount; i <= Restaurant.operationCount + dc.operations().size(); i++) {
                         operationIds.add(i);
                     }
                     JsonLogger.logProcess(id, order.id(), startDate, cal.getTime(), operationIds);

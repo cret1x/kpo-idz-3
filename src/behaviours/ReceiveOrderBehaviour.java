@@ -11,6 +11,7 @@ import jade.wrapper.StaleProxyException;
 import main.Restaurant;
 import util.ACLHelper;
 import util.ConversationTypes;
+import util.JsonLogger;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -28,10 +29,12 @@ public class ReceiveOrderBehaviour extends CyclicBehaviour {
 
             }
             if (orders != null) {
+                ArrayList<Order> realOrders = new ArrayList<>();
                 try {
                     for (Order o: orders) {
                         Thread.sleep(1000);
                         if (checkPosition(o.dishId())) {
+                            realOrders.add(o);
                             Restaurant.containerController.createNewAgent("Order" + o.id(), OrderAgent.class.getName(), new Object[]{o}).start();
                         }
                     }
@@ -39,6 +42,11 @@ public class ReceiveOrderBehaviour extends CyclicBehaviour {
 
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
+                }
+                for (var o : realOrders) {
+                    ACLHelper.sendMessageWithReply(myAgent, MenuAgent.AGENT_TYPE, ConversationTypes.GET_COST, o.dishId(), (cost -> {
+                        JsonLogger.logVisitor(msg.getSender().getName(), (long) cost);
+                    }));
                 }
             }
             System.out.println("Got from " + msg.getSender().getName());

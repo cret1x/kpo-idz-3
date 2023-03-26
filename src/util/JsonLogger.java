@@ -16,18 +16,22 @@ public class JsonLogger {
     private static final OpLogEntry opLogEntry = new OpLogEntry(new ArrayList<>());
     private static final ProcLogEntry procLogEntry = new ProcLogEntry(new ArrayList<>());
     private static final AgentLogEntry agentLogEntry = new AgentLogEntry(new ArrayList<>());
+    private static final VisitorLogEntry visLogEntry = new VisitorLogEntry(new ArrayList<>());
 
     public static void setBasePath(String path) {
         basePath = path;
     }
 
     public static void logOperations(long a, long b, long c, Date d, Date e, long f, long g) {
-        OpLog opLog = new OpLog(a, b, c, d, e, f, g);
-        opLogEntry.operation_log.add(opLog);
+        opLogEntry.operation_log.add(new OpLog(a, b, c, d, e, f, g));
     }
     public static void logProcess(long a, long b, Date c, Date d, ArrayList<Long> e) {
         ProcLog procLog = new ProcLog(a, b, c, d, e);
         procLogEntry.process_log.add(procLog);
+    }
+
+    public static void logVisitor(String a, long b) {
+        visLogEntry.visitor_log.add(new VisitorLog(a, b));
     }
 
     public static void logAgent(String text) {
@@ -55,6 +59,7 @@ public class JsonLogger {
         saveToFile("operation_log.txt", gson.toJson(opLogEntry));
         saveToFile("process_log.txt", gson.toJson(procLogEntry));
         saveToFile("agent_log.txt", gson.toJson(agentLogEntry));
+        saveToFile("visitor_log.txt", gson.toJson(visLogEntry));
     }
 
     static class OpLog {
@@ -113,5 +118,20 @@ public class JsonLogger {
         public AgentLogEntry(ArrayList<String> l) {
             this.agent_log = l;
         }
+    }
+
+    static class VisitorLog {
+        private String name;
+        private long money;
+
+        public VisitorLog(String name, long money) {
+            this.money = money;
+            this.name = name;
+        }
+    }
+
+    static class VisitorLogEntry {
+        public ArrayList<VisitorLog> visitor_log;
+        public VisitorLogEntry(ArrayList<VisitorLog> l) {this.visitor_log = l;}
     }
 }
