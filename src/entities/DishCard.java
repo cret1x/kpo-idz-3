@@ -8,7 +8,6 @@ public class DishCard implements Serializable {
     private String dish_name;
     private String card_descr;
     private double card_time;
-    private long equip_type;
     ArrayList<Operation> operations;
 
     public long id() {
@@ -25,10 +24,6 @@ public class DishCard implements Serializable {
 
     public double time() {
         return card_time;
-    }
-
-    public long equipType() {
-        return equip_type;
     }
 
     public ArrayList<Operation> operations() {

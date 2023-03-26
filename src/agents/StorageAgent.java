@@ -6,6 +6,7 @@ import entities.Product;
 import entities.ProductType;
 import jade.core.Agent;
 import util.DFHelper;
+import util.JsonLogger;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class StorageAgent extends Agent {
             products = (ArrayList<Product>) args[0];
             productsTypes = (ArrayList<ProductType>) args[1];
         }
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " is ready.");
         DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
         addBehaviour(new ManageSuppliesBehaviour());
         System.out.println("Current Storage: ");
@@ -54,6 +55,6 @@ public class StorageAgent extends Agent {
 
 
     protected void takeDown() {
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " terminating.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " terminating.");
     }
 }

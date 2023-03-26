@@ -9,6 +9,7 @@ import entities.MenuDish;
 import jade.core.Agent;
 import jade.core.behaviours.ParallelBehaviour;
 import util.DFHelper;
+import util.JsonLogger;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -29,7 +30,7 @@ public class MenuAgent extends Agent {
             dishes = (ArrayList<MenuDish>) args[0];
             recipes = (ArrayList<DishCard>) args[1];
         }
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " is ready.");
         DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
         var pb = new ParallelBehaviour(ParallelBehaviour.WHEN_ALL);
         pb.addSubBehaviour(new ReceiveMenuRequestBehaviour());
@@ -39,6 +40,6 @@ public class MenuAgent extends Agent {
         addBehaviour(pb);
     }
     protected void takeDown() {
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " terminating.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " terminating.");
     }
 }

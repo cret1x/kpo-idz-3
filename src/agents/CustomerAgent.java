@@ -7,6 +7,7 @@ import entities.Order;
 import jade.core.Agent;
 import jade.core.behaviours.SequentialBehaviour;
 import util.DFHelper;
+import util.JsonLogger;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +24,7 @@ public class CustomerAgent extends Agent {
 
     @Override
     protected void setup() {
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " is ready.");
 
         Object[] args = getArguments();
         if (args != null && args.length > 0) {
@@ -41,6 +42,6 @@ public class CustomerAgent extends Agent {
     }
 
     protected void takeDown() {
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " terminating.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " terminating.");
     }
 }

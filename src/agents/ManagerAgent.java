@@ -11,13 +11,13 @@ public class ManagerAgent extends Agent {
 
     @Override
     protected void setup() {
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " is ready.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " is ready.");
         DFHelper.register(this, AGENT_TYPE, AGENT_NAME);
         addBehaviour(new ReceiveOrderBehaviour());
     }
 
     protected void takeDown() {
-        System.out.println(AGENT_NAME + " " + getAID().getName() + " terminating.");
+        JsonLogger.logAgent(AGENT_NAME + " " + getAID().getName() + " terminating.");
         JsonLogger.saveAll();
     }
 }
